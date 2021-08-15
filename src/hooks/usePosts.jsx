@@ -1,9 +1,21 @@
 import { useMemo } from 'react'
 
+const sortPost = (arr, sort) => {
+  arr.sort((a,b) => {
+  if(typeof a[sort] === 'number')
+    return a[sort] - b[sort]
+  return a[sort].localeCompare(b[sort])
+  })
+  
+  return arr
+}
+
 export const useSortedPosts = (posts, sort) => {
   const sortedPosts = useMemo(() => {
-    if(sort)
-      return [...posts].sort((a,b) => a[sort].localeCompare(b[sort]))
+    if(sort){  
+      return sortPost([...posts], sort)
+    }
+        
     return posts
   }, [sort, posts])
 
