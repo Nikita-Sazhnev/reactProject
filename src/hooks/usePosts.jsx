@@ -2,11 +2,11 @@ import { useMemo } from 'react'
 
 const sortPost = (arr, sort) => {
   arr.sort((a,b) => {
-  if(typeof a[sort] === 'number')
+  if(typeof a[sort] === 'number' && typeof b[sort] === 'number')
     return a[sort] - b[sort]
-  return a[sort].localeCompare(b[sort])
+  return String(a[sort]).localeCompare(String(b[sort]))
   })
-  
+
   return arr
 }
 
